@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class MobReach : Mob
 {
-    private float reach = 10f;
+    /** Référence aus préfab du projectile. */
     public GameObject projectile;
-
+    /** Position d'où partent les projectiles. */
     private Transform firePoint;
 
-    private void Awake() { InitMovement(); }
-
-    // Start is called before the first frame update
+    // Initialisation des valeurs propres au mob à distance.
     void Start()
     {
         hp = 2;
         dmg = 3;
         speed = 25f;
+        reach = 8f;
         mobRb.AddForce(direction * speed);
         firePoint = transform.GetChild(0);
     }
@@ -25,26 +24,30 @@ public class MobReach : Mob
     {
         tmpTimer += Time.deltaTime;
 
-        RaycastHit2D hitInfo = Physics2D.Raycast((Vector2)transform.position, direction, reach, LayerMask.NameToLayer("MobLayer"));
-        if (hitInfo.collider != null)
+        //Si le joueur est à bonne distance.
+        if (DetectPlayer())
         {
-            if (hitInfo.collider.transform.CompareTag("Player") && !attacking)
+            // Lancement de l'attaque.
+            if(!attacking)
             {
                 attacking = true;
                 mobRb.AddForce(-direction * speed);
-
-                Debug.Log("Pew Pew attack !");
-                GameObject tmpPew = Instantiate(projectile, firePoint.position, firePoint.rotation);
-                tmpPew.GetComponent<Rigidbody2D>().AddForce(direction * 125f);
             }
+
+            // Lancement du projectile.
+            Debug.Log("Pew Pew attack !");
+            GameObject tmpPew = Instantiate(projectile, firePoint.position, firePoint.rotation);
+            tmpPew.GetComponent<Rigidbody2D>().AddForce(direction * 125f);
         }
 
-        if (tmpTimer >= 2f && attacking)
+        // Fin de l'attaque
+        if (attacking && tmpTimer >= 2f)
         {
             tmpTimer = 0;
             attacking = false;
-            mobRb.AddForce(direction * speed);
+            if (!DetectPlayer()) mobRb.AddForce(direction * speed);
+            // Si le joueur est toujours à portée on relance l'attaque.
+            else attacking = true;
         }
-
     }
 }
