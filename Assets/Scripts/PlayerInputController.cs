@@ -7,7 +7,7 @@ public class PlayerInputController : MonoBehaviour
 	
 	private Transform _transform;
 	
-	private Rigidbody _rigidbody;
+	private Rigidbody2D _rigidbody;
 	private PlayerInput _playerInput;
 	
 	private InputActionMap _defaultActionMap, _flyingActionMap;
@@ -21,11 +21,13 @@ public class PlayerInputController : MonoBehaviour
 		
 		_transform = transform;
 
-		_rigidbody = GetComponent<Rigidbody>();
+		_rigidbody = GetComponent<Rigidbody2D>();
 		_playerInput = GetComponent<PlayerInput>();
 		
 		_defaultActionMap = _playerInput.actions.FindActionMap("Default");
 		_flyingActionMap = _playerInput.actions.FindActionMap("Flying");
+
+		UpdateActionMap();
 	}
 
 	private void Update()
@@ -35,8 +37,7 @@ public class PlayerInputController : MonoBehaviour
 			_canFly = _player.canFly;
 			UpdateActionMap();
 		}
-		
-				
+
 		if (_canFly)
 		{
 			_transform.position += (Vector3)_movement;
@@ -53,14 +54,14 @@ public class PlayerInputController : MonoBehaviour
 		{
 			_defaultActionMap.Disable();
 			_flyingActionMap.Enable();
-			_rigidbody.useGravity = false;
+			//_rigidbody. = false;
 			_rigidbody.velocity = Vector3.zero;
 		}
 		else
 		{
 			_defaultActionMap.Enable();
 			_flyingActionMap.Disable();
-			_rigidbody.useGravity = true;
+			//_rigidbody.useGravity = true;
 		}
 	}
 
@@ -71,22 +72,22 @@ public class PlayerInputController : MonoBehaviour
 
 	public void Skill1(InputAction.CallbackContext callbackContext)
 	{
-		if (!callbackContext.ReadValueAsButton() || !_player.skill1) return;
-		
+		if (!callbackContext.ReadValueAsButton() || !callbackContext.performed) return;
+
 		_player.Skill1();
 	}
-	
+
 	public void Skill2(InputAction.CallbackContext callbackContext)
 	{
-		if (!callbackContext.ReadValueAsButton() || !_player.skill2) return;
-		
+		if (!callbackContext.ReadValueAsButton() || !callbackContext.performed) return;
+
 		_player.Skill2();
 	}
 	
 	public void Skill3(InputAction.CallbackContext callbackContext)
 	{
-		if (!callbackContext.ReadValueAsButton() || !_player.skill3) return;
-		
+		if (!callbackContext.ReadValueAsButton() || !callbackContext.performed) return;
+
 		_player.Skill3();
 	}
 }

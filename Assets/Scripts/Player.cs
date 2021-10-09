@@ -2,8 +2,6 @@
 
 public class Player : MonoBehaviour
 {
-	//private PlayerInputController _playerInputController;
-
 	// Abilities
 	public bool canFly = true;
 	public bool lifeRegeneration = true;
@@ -13,16 +11,22 @@ public class Player : MonoBehaviour
 
 	public void Skill1()
 	{
+		if (!skill1) return;
 		
+		Debug.Log("Skill 1");
 	}
 	
 	public void Skill2()
 	{
+		if (!skill2) return;
 		
+		Debug.Log("Skill 2");
 	}
 	
 	public void Skill3()
 	{
+		if (!skill3) return;
 		
+		Debug.Log("Skill 3");
 	}
 }
