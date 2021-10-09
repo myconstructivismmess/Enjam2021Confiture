@@ -1,22 +1,31 @@
 fileFormatVersion: 2
-guid: 885256ca38706cb439759fab397d0c2c
+guid: 01483b8551a7025459bb2314ea9e7ade
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6810786495846798471
-    second: heros_gun1-Sheet_0
+      213: -2528181736145224965
+    second: heros_dash-Sheet_0
   - first:
-      213: -4441083410960632050
-    second: heros_gun1-Sheet_1
+      213: -3816714009248232459
+    second: heros_dash-Sheet_1
   - first:
-      213: -6069050312367063854
-    second: heros_gun1-Sheet_2
+      213: -6982324039245881174
+    second: heros_dash-Sheet_2
   - first:
-      213: -2178820550069477447
-    second: heros_gun1-Sheet_3
+      213: -5249164553822907367
+    second: heros_dash-Sheet_3
   - first:
-      213: 8501231902106642240
-    second: heros_gun1-Sheet_4
+      213: 6073316272716750295
+    second: heros_dash-Sheet_4
+  - first:
+      213: -1367530922883327285
+    second: heros_dash-Sheet_5
+  - first:
+      213: -6343898177408466453
+    second: heros_dash-Sheet_6
+  - first:
+      213: -1441755233448096091
+    second: heros_dash-Sheet_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heros_gun1-Sheet_0
+      name: heros_dash-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -120,14 +129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97b260264c93b71a0800000000000000
-      internalID: -6810786495846798471
+      spriteID: bfafe691b181aecd0800000000000000
+      internalID: -2528181736145224965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heros_gun1-Sheet_1
+      name: heros_dash-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -141,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e07bfc7ea2a1e52c0800000000000000
-      internalID: -4441083410960632050
+      spriteID: 5fb808594de480bc0800000000000000
+      internalID: -3816714009248232459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heros_gun1-Sheet_2
+      name: heros_dash-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -162,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dc336765e666cba0800000000000000
-      internalID: -6069050312367063854
+      spriteID: aa0241eb74dc91f90800000000000000
+      internalID: -6982324039245881174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heros_gun1-Sheet_3
+      name: heros_dash-Sheet_3
       rect:
         serializedVersion: 2
         x: 192
@@ -183,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bf99cbe04643c1e0800000000000000
-      internalID: -2178820550069477447
+      spriteID: 91450d946a83727b0800000000000000
+      internalID: -5249164553822907367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heros_gun1-Sheet_4
+      name: heros_dash-Sheet_4
       rect:
         serializedVersion: 2
         x: 256
@@ -204,8 +213,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 047e84e9f517af570800000000000000
-      internalID: 8501231902106642240
+      spriteID: 7dd91e3e8f0c84450800000000000000
+      internalID: 6073316272716750295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heros_dash-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bca5d220fdd850de0800000000000000
+      internalID: -1367530922883327285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heros_dash-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be102541832f5f7a0800000000000000
+      internalID: -6343898177408466453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heros_dash-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae0441014bddfbe0800000000000000
+      internalID: -1441755233448096091
       vertices: []
       indices: 
       edges: []
@@ -213,7 +285,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 34b909b954d5a2545a3a2af76d8400bf
     internalID: 0
     vertices: []
     indices: 
