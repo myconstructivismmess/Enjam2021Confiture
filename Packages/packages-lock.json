@@ -1,6 +1,10 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "com.unity.2d.sprite": {
+=======
+    "com.unity.2d.tilemap": {
+>>>>>>> 5db7177c540a44d8c47fcc909b23e61b26dd9636
       "version": "1.0.0",
       "depth": 0,
       "source": "builtin",
@@ -40,6 +44,13 @@
     },
     "com.unity.ide.vscode": {
       "version": "1.2.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.inputsystem": {
+      "version": "1.0.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
