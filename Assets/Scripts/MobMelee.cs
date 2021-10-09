@@ -15,14 +15,30 @@ public class MobMelee : Mob
         mobRb.AddForce(direction * speed);
     }
 
-    protected override void Attack()
+    void Update()
     {
-       // Todo lancer l'animation + enable le collider d'attaque.
-    }
+        tmpTimer += Time.deltaTime;
+        //Debug.Log(attacking +" " + tmpTimer);
 
-    protected override void DetectPlayer()
-    {
-        RaycastHit2D hitInfo = Physics2D.Raycast((Vector2)transform.position, direction, 1f);
-        if (hitInfo.collider != null) if (hitInfo.collider.transform.CompareTag("Player")) Attack();
+        RaycastHit2D hitInfo = Physics2D.Raycast((Vector2)transform.position, direction, 0.2f, LayerMask.NameToLayer("MobLayer"));
+        if (hitInfo.collider != null)
+        {
+            if (hitInfo.collider.transform.tag == "Player" && !attacking)
+            {
+                attacking = true;
+                mobRb.AddForce(-direction * speed);
+
+                Debug.Log("Claw attack !");
+
+                
+            }
+        }
+
+        if (tmpTimer >= 2f && attacking)
+        {
+            tmpTimer = 0;
+            attacking = false;
+            mobRb.AddForce(direction * speed);
+        }
     }
 }

@@ -8,8 +8,12 @@ public abstract class Mob : MonoBehaviour
     protected int dmg;
     protected float speed;
 
+    protected bool attacking;
+
     public Vector2 direction;
     protected Rigidbody2D mobRb;
+
+    protected float tmpTimer = 0f;
 
     protected void InitMovement()
     {
@@ -21,8 +25,6 @@ public abstract class Mob : MonoBehaviour
     {
         direction.x *= -1;
         mobRb.AddForce(direction * speed * 2);
+        transform.eulerAngles = new Vector3(0, 180, 0);
     }
-    protected abstract void DetectPlayer();
-    protected abstract void Attack();
-
 }
