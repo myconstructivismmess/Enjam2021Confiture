@@ -2,31 +2,31 @@
 
 public class Player : MonoBehaviour
 {
-	// Abilities
-	public bool canFly = true;
+	[Header("Abilities")]
+	public bool attack = true;
+	public bool longRangeAttack = true;
+	public bool fly = true;
+	public bool dash = true;
 	public bool lifeRegeneration = true;
-	public bool skill1 = true;
-	public bool skill2 = true;
-	public bool skill3 = true;
 
-	public void Skill1()
+	[Header("Properties")]
+	public bool demon = true;
+	public bool cape = true;
+	public float flySpeed = 400;
+	public float speed = 700;
+	public float jumpSpeed = 1200;
+
+	public void Attack()
 	{
-		if (!skill1) return;
+		if (!attack) return;
 		
-		Debug.Log("Skill 1");
+		Debug.Log("Attack");
 	}
 	
-	public void Skill2()
+	public void LongRangeAttack()
 	{
-		if (!skill2) return;
+		if (!longRangeAttack) return;
 		
-		Debug.Log("Skill 2");
-	}
-	
-	public void Skill3()
-	{
-		if (!skill3) return;
-		
-		Debug.Log("Skill 3");
+		Debug.Log("Long Range Attack");
 	}
 }
