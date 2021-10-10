@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputController : MonoBehaviour
@@ -9,10 +10,20 @@ public class PlayerInputController : MonoBehaviour
 	
 	private Rigidbody2D _rigidbody;
 	private PlayerInput _playerInput;
+	private Animator _animator;
+	private SpriteRenderer _spriteRenderer;
+	private SpriteRenderer _demonMaskSpriteRenderer;
+	private SpriteRenderer _demonCapeSpriteRenderer;
+	private SpriteRenderer _flyFlamesSpriteRenderer;
 	
 	private InputActionMap _defaultActionMap, _flyingActionMap;
+
+	private static int _isMovingAnimatorHash = Animator.StringToHash("IsMoving");
+	private static int _dashAnimatorHash = Animator.StringToHash("Dash");
 	
 	private bool _canFly = true;
+	private bool _demon = true;
+	private bool _cape = true;
 	private Vector2 _movement;
 
 	private void Awake()
@@ -23,6 +34,12 @@ public class PlayerInputController : MonoBehaviour
 
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_playerInput = GetComponent<PlayerInput>();
+		_animator = GetComponent<Animator>();
+
+		_spriteRenderer = GetComponent<SpriteRenderer>();
+		_demonMaskSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[1];
+		_demonCapeSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[2];
+		_flyFlamesSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[3];
 		
 		_defaultActionMap = _playerInput.actions.FindActionMap("Default");
 		_flyingActionMap = _playerInput.actions.FindActionMap("Flying");
@@ -32,20 +49,29 @@ public class PlayerInputController : MonoBehaviour
 
 	private void Update()
 	{
-		if (_player.canFly != _canFly)
+		if (_player.fly != _canFly)
 		{
-			_canFly = _player.canFly;
+			_canFly = _player.fly;
+			UpdateFlyFlamesVisibility();
 			UpdateActionMap();
 		}
 
+		if (_player.demon != _demon)
+		{
+			_demon = _player.demon;
+			UpdateDemonMaskVisibility();
+		}
+		
+		if (_player.cape != _cape)
+		{
+			_cape = _player.cape;
+			UpdateCapeVisibility();
+		}
+
 		if (_canFly)
-		{
-			_transform.position += (Vector3)_movement;
-		}
+			_rigidbody.AddForce(_movement * Time.deltaTime * _player.flySpeed);
 		else
-		{
-			_rigidbody.AddForce(_movement);
-		}
+			_rigidbody.AddForce(new Vector2(_movement.x, Mathf.Max(_movement.y, 0)) * Time.deltaTime * _player.speed);
 	}
 
 	private void UpdateActionMap()
@@ -54,40 +80,108 @@ public class PlayerInputController : MonoBehaviour
 		{
 			_defaultActionMap.Disable();
 			_flyingActionMap.Enable();
-			//_rigidbody. = false;
+			_rigidbody.gravityScale = 0;
 			_rigidbody.velocity = Vector3.zero;
 		}
 		else
 		{
 			_defaultActionMap.Enable();
 			_flyingActionMap.Disable();
-			//_rigidbody.useGravity = true;
+			_rigidbody.gravityScale = 1;
 		}
+	}
+
+	private void UpdateDemonMaskVisibility()
+	{
+		_demonMaskSpriteRenderer.enabled = _demon;
+	}
+
+	private void UpdateCapeVisibility()
+	{
+		_demonCapeSpriteRenderer.enabled = _cape;
+	}
+
+	private void UpdateFlyFlamesVisibility()
+	{
+		_flyFlamesSpriteRenderer.enabled = _canFly;
 	}
 
 	public void Move(InputAction.CallbackContext callbackContext)
 	{
-		_movement = callbackContext.ReadValue<Vector2>();
+		Vector2 movement = callbackContext.ReadValue<Vector2>();
+		
+		if (movement.magnitude > 0.3f)
+		{
+			_movement = movement.normalized;
+			_animator.SetBool(_isMovingAnimatorHash, true);
+			
+			_player.flipX = movement.x < 0;
+			_spriteRenderer.flipX = movement.x < 0;
+			_demonMaskSpriteRenderer.flipX = _player.flipX;
+			_demonCapeSpriteRenderer.flipX = _player.flipX;
+			_flyFlamesSpriteRenderer.flipX = _player.flipX;
+		}
+		else
+		{
+			_movement = Vector2.zero;
+			_animator.SetBool(_isMovingAnimatorHash, false);
+		}
 	}
 
-	public void Skill1(InputAction.CallbackContext callbackContext)
+	public void Move1D(InputAction.CallbackContext callbackContext)
+	{
+		Vector2 movement = new Vector2(callbackContext.ReadValue<Vector2>().x, 0);
+		
+		if (movement.magnitude > 0.3f)
+		{
+			_movement = movement;
+			_animator.SetBool(_isMovingAnimatorHash, true);
+			
+			_player.flipX = movement.x < 0;
+			_spriteRenderer.flipX = movement.x < 0;
+			_demonMaskSpriteRenderer.flipX = _player.flipX;
+			_demonCapeSpriteRenderer.flipX = _player.flipX;
+			_flyFlamesSpriteRenderer.flipX = _player.flipX;
+		}
+		else
+		{
+			_movement = Vector2.zero;
+			_animator.SetBool(_isMovingAnimatorHash, false);
+		}
+	}
+
+	public void Jump(InputAction.CallbackContext callbackContext)
+	{
+		if (!callbackContext.ReadValueAsButton() || !callbackContext.performed) return;
+		
+		_rigidbody.AddForce(new Vector2(0, _player.jumpSpeed));
+	}
+
+	public void Attack(InputAction.CallbackContext callbackContext)
 	{
 		if (!callbackContext.ReadValueAsButton() || !callbackContext.performed) return;
 
-		_player.Skill1();
+		_player.Attack();
 	}
 
-	public void Skill2(InputAction.CallbackContext callbackContext)
+	public void LongRangeAttack(InputAction.CallbackContext callbackContext)
 	{
 		if (!callbackContext.ReadValueAsButton() || !callbackContext.performed) return;
 
-		_player.Skill2();
+		_player.LongRangeAttack();
 	}
 	
-	public void Skill3(InputAction.CallbackContext callbackContext)
+	public void Dash(InputAction.CallbackContext callbackContext)
 	{
 		if (!callbackContext.ReadValueAsButton() || !callbackContext.performed) return;
 
-		_player.Skill3();
+		if (!_player.dash) return;
+
+		StartCoroutine(DashCoroutine());
+	}
+
+	private IEnumerator DashCoroutine()
+	{
+		yield return new WaitForSeconds(1f);
 	}
 }

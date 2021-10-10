@@ -1,32 +1,71 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	// Abilities
-	public bool canFly = true;
+	[Header("Abilities")]
+	public bool attack = true;
+	public bool longRangeAttack = true;
+	public bool fly = true;
+	public bool dash = true;
 	public bool lifeRegeneration = true;
-	public bool skill1 = true;
-	public bool skill2 = true;
-	public bool skill3 = true;
 
-	public void Skill1()
+	[Header("Properties")]
+	public bool demon = true;
+	public bool cape = true;
+	public float flySpeed = 400;
+	public float speed = 700;
+	public float jumpSpeed = 1200;
+	public float attackDistance = 4f;
+	public int attackDammage = 5;
+	public LayerMask attackLayerMask;
+
+	public int health = 10;
+
+	[NonSerialized] public bool flipX;
+
+	private Transform _transform;
+
+	public void Start()
 	{
-		if (!skill1) return;
+		_transform = transform;
+	}
+
+	public void Attack()
+	{
+		if (!attack) return;
 		
-		Debug.Log("Skill 1");
+		Debug.Log("Attack");
+
+		RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(_transform.position, flipX ? Vector2.left : Vector2.right, attackDistance, attackLayerMask);
+
+		foreach (RaycastHit2D raycastHit2D in raycastHit2Ds)
+		{
+			if (raycastHit2D.transform.CompareTag("Mob"))
+			{
+				raycastHit2D.transform.GetComponent<Mob>().Hit(attackDammage);
+			}
+		}
 	}
 	
-	public void Skill2()
+	public void LongRangeAttack()
 	{
-		if (!skill2) return;
+		if (!longRangeAttack) return;
 		
-		Debug.Log("Skill 2");
+		Debug.Log("Long Range Attack");
 	}
-	
-	public void Skill3()
+
+	public void Hit(int dmg)
+    {
+		health -= dmg;
+		Debug.Log($"Ouch j'ai plus que {health}");
+    }
+
+	private void OnDrawGizmosSelected()
 	{
-		if (!skill3) return;
+		Gizmos.color = Color.red;
 		
-		Debug.Log("Skill 3");
+		Gizmos.DrawLine(transform.position, transform.position + new Vector3(attackDistance, 0));
+		Gizmos.DrawLine(transform.position, transform.position - new Vector3(attackDistance, 0));
 	}
 }
