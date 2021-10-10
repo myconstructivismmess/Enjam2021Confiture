@@ -9,12 +9,34 @@ using UnityEngine.UI;
 
 public class FadeOutScenes : MonoBehaviour
 {
+    enum FadeOnStart
+    {
+        In,
+        Out
+    }
+
     public Image img;
     [SerializeField] private float _fadeOutTime;
     [SerializeField] private float _fadeInTime;
+    [SerializeField] private FadeOnStart _fadeInOnStart;
 
 
-    public void FadeOut(UnityEvent e)
+    private void Start()
+    {
+        switch (_fadeInOnStart)
+        {
+            case FadeOnStart.In:
+                FadeIn();
+                break;
+            case FadeOnStart.Out:
+                FadeOut();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    public void FadeOut(UnityEvent e = null)
     {
         img.DOFade(1F, _fadeOutTime).OnComplete(() =>
         {

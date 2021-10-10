@@ -49,7 +49,7 @@ Canvas:
   m_GameObject: {fileID: 9053961137310877781}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -116,6 +116,7 @@ MonoBehaviour:
   img: {fileID: 9053961137827316405}
   _fadeOutTime: 2
   _fadeInTime: 2
+  _fadeInOnStart: 0
 --- !u!1 &9053961137827316411
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
