@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,6 +23,8 @@ public abstract class Mob : MonoBehaviour
     protected SpriteRenderer _renderer;
     [SerializeField] protected int _numberOfBlink;
     [SerializeField] protected float _blinkDuration;
+    [SerializeField] protected GameObject HealthBar;
+    [SerializeField] protected List<Transform> HeartList;
 
     #endregion
 
@@ -29,6 +33,7 @@ public abstract class Mob : MonoBehaviour
     protected Rigidbody2D mobRb;
     // Timer WIP.
     protected float tmpTimer = 0f;
+    private bool _isFirstHit;
 
     // Initialisation des mouvements aléatoirement.
     void Awake()
@@ -55,10 +60,22 @@ public abstract class Mob : MonoBehaviour
         else return hitInfo.collider.transform.CompareTag("Player");
     }
 
-    protected void Hit(int damage)
+    [Button]
+    public void Hit(int damage)
     {
+        if (_isFirstHit)
+        {
+            HealthBar.gameObject.SetActive(true);
+            _isFirstHit = false;
+        }
+
         hp -= damage;
-    }
+        if (HeartList.Count > 0)
+        {
+            HeartList.Remove(HeartList.First());
+            HeartList[0].gameObject.SetActive(false);
+        }
+    } 
     
     /// <summary>
     /// Death animation using DOTWeen
