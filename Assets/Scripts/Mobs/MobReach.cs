@@ -13,8 +13,8 @@ public class MobReach : Mob
     // Initialisation des valeurs propres au mob � distance.
     void Start()
     {
-        hp = 2;
-        dmg = 3;
+        hp = 75;
+        dmg = 20;
         speed = 25f;
         reach = 8f;
         mobRb.AddForce(direction * speed);

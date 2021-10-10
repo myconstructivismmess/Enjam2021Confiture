@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player")) ;
+        if (collision.transform.CompareTag("Player"))
             collision.transform.GetComponent<DummyPlayer>().Hit(2);
     }
 }

@@ -7,8 +7,6 @@ public class MobMelee : Mob
 {
     /** Collider qui détecte si l'attaque du mob a touché. */
     Collider2D clawCollider;
-    /** Timer depuis le début de l'attaque. */
-    float attackTimer = 0;
 
     // Initialisation des valeurs propres au mob de mêlée.
     void Start()
