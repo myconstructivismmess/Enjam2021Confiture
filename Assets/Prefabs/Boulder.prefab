@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6032374410157221052}
   - component: {fileID: 6032374410157221053}
   - component: {fileID: 6032374410157221050}
+  - component: {fileID: 6970153731055688578}
   m_Layer: 0
   m_Name: BoulderSprite
   m_TagString: Untagged
@@ -94,7 +95,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -131,6 +132,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6970153731055688578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6032374410157221048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101518615c0c1404a9c76a071674950c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6032374410838748904
 GameObject:
   m_ObjectHideFlags: 0

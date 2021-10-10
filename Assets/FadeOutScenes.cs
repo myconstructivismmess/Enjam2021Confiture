@@ -18,12 +18,12 @@ public class FadeOutScenes : MonoBehaviour
     public Image img;
     [SerializeField] private float _fadeOutTime;
     [SerializeField] private float _fadeInTime;
-    [SerializeField] private FadeOnStart _fadeInOnStart;
+    [SerializeField] private FadeOnStart _fadeOnStart;
 
 
     private void Start()
     {
-        switch (_fadeInOnStart)
+        switch (_fadeOnStart)
         {
             case FadeOnStart.In:
                 FadeIn();
