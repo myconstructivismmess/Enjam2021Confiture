@@ -823,7 +823,7 @@ MonoBehaviour:
   mobList:
   - {fileID: 6763141948415048093}
   - {fileID: 2731672515887754664}
-  _sceneName: IntroScene
+  _sceneName: BeforeMobScene
   _fadeOutScenes: {fileID: 1162518891}
 --- !u!1 &482542822
 GameObject:

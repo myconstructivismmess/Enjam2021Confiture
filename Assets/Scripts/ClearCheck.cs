@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -19,7 +20,7 @@ public class ClearCheck : MonoBehaviour
 
     public void CheckEnd()
     {
-        if (mobList.Count == 0)
+        if (mobList.IsNullOrEmpty())
         {
             var e = new UnityEvent();
             e.AddListener(() =>

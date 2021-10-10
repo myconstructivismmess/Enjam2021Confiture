@@ -140,7 +140,12 @@ public class PrideBoss : Boss
                 }
             }
         }
-        else Debug.Log("DED");
+        else
+        {
+            Debug.Log("DED");
+            ClearCheck.Instance.mobList.Remove(transform);
+            ClearCheck.Instance.CheckEnd();
+        }
     }
 
     Quaternion LookAt(Vector3 pos)

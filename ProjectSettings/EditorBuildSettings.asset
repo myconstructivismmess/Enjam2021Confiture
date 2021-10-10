@@ -17,4 +17,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MobScene.unity
     guid: faa1da90a64698f47b83a6313cef4c20
+  - enabled: 1
+    path: Assets/Scenes/BeforeBossScene.unity
+    guid: 2faeab251ccfa594f93023186755b6aa
+  - enabled: 1
+    path: Assets/Scenes/BeforeMobScene.unity
+    guid: 7b4e1800621ca8843a942a0fde66d73b
+  - enabled: 1
+    path: Assets/Scenes/BeforeMobScene2.unity
+    guid: d3b4646e50e48f341a68d15ccf67df17
+  - enabled: 1
+    path: Assets/Scenes/BossScene.unity
+    guid: 896fab03d26e94542bfb9d8694e7d809
+  - enabled: 1
+    path: Assets/Scenes/CrueltyScene.unity
+    guid: ac7f07b9f626e9345aaf25a364c81595
+  - enabled: 1
+    path: Assets/Scenes/EndScript.unity
+    guid: 692b5ebc2cbeb4d458372d19213ce181
+  - enabled: 1
+    path: Assets/Scenes/MobScene2.unity
+    guid: 6fe94254f88b73b47930f1f5a5986295
+  - enabled: 1
+    path: Assets/Scenes/MobScene3.unity
+    guid: 8431725258a45e44c80a4227940ecd31
   m_configObjects: {}

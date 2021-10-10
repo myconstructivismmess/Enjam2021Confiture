@@ -11,6 +11,7 @@ public class FadeInFadeOutText : MonoBehaviour
     [SerializeField] private List<TMP_Text> _introTexts;
     private int _currentText = 0;
     [SerializeField] private string _sceneName;
+    public bool deactivate;
     
     void Start()
     {
@@ -37,6 +38,12 @@ public class FadeInFadeOutText : MonoBehaviour
     {
        _introTexts[_currentText].DOFade(0f, 4f).OnComplete(() =>
        {
+           if (deactivate)
+           {
+               SceneManager.LoadScene(_sceneName);
+               return;
+           }
+
            _currentText++;
            if (_currentText <= 2)
                Invoke(nameof(FadeIn), 1f);

@@ -180,7 +180,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: text 1
+  m_text: 'THOUSANDS OF MILLENIAS AGO, THE FORCES OF HELL WERE SEALED AWAY AFTER
+    BEING DEFEATED BY THE HERO.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26d04b9bfec8f2a46b20f16971642a82, type: 2}
   m_sharedMaterial: {fileID: -4944383600504099109, guid: 26d04b9bfec8f2a46b20f16971642a82, type: 2}
@@ -452,6 +455,7 @@ MonoBehaviour:
   - {fileID: 153374987}
   - {fileID: 1894159715}
   - {fileID: 1317092893}
+  _sceneName: MainScene
 --- !u!1 &980188837
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: text 3
+  m_text: "\rBECOME WHAT YOU MUST."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26d04b9bfec8f2a46b20f16971642a82, type: 2}
   m_sharedMaterial: {fileID: -4944383600504099109, guid: 26d04b9bfec8f2a46b20f16971642a82, type: 2}
@@ -792,7 +796,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: text 2
+  m_text: MANY SOULS, DEMONIC OR BANISHED, WERE CONDEMNED TO ROAM THE LAYERS OF HELL
+    WITH NO ESCAPE OR SALVATION, WHETHER OR NOT THEY HAD COMMITED ANY SIN, AS WAS
+    THE WILL OF THE CHURCH OF THE LIGHT.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26d04b9bfec8f2a46b20f16971642a82, type: 2}
   m_sharedMaterial: {fileID: -4944383600504099109, guid: 26d04b9bfec8f2a46b20f16971642a82, type: 2}

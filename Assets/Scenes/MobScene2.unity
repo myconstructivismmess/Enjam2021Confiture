@@ -1240,7 +1240,7 @@ MonoBehaviour:
   mobList:
   - {fileID: 1266219267}
   - {fileID: 682050170}
-  _sceneName: BossScene
+  _sceneName: BeforeBossScene
   _fadeOutScenes: {fileID: 998007230}
 --- !u!1 &1857316402
 GameObject:
