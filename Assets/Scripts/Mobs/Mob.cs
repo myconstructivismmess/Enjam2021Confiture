@@ -77,7 +77,7 @@ public abstract class Mob : MonoBehaviour
         if (HeartList.Count > 0)
         {
             HeartList.Remove(HeartList.First());
-            HeartList[0].gameObject.SetActive(false);
+            HeartList[0]?.gameObject.SetActive(false);
         }
     }
     
