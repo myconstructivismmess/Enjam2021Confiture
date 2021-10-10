@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MobMelee : Mob
 {
@@ -19,6 +20,9 @@ public class MobMelee : Mob
         mobRb.AddForce(direction * speed);
         clawCollider = transform.GetChild(0).GetComponent<Collider2D>();
         clawCollider.enabled = false;
+        _collider = GetComponent<Collider2D>();
+        _renderer = GetComponent<SpriteRenderer>();
+        _onDeath = new UnityEvent();
     }
 
     void Update()
@@ -52,6 +56,13 @@ public class MobMelee : Mob
                 // Si le joueur est toujours à portée on relance l'attaque.
                 else attacking = true;
             }
+        }
+        
+        if (hp <= 0 && _isAlive)
+        {
+            _onDeath?.Invoke();
+            Blink(_numberOfBlink, _blinkDuration);
+            _isAlive = false;
         }
     }
 
