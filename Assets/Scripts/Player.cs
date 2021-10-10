@@ -21,6 +21,16 @@ public class Player : MonoBehaviour
 	public LayerMask attackLayerMask;
 
 	public int health = 10;
+	float cooldownDmg = 3;
+	float cooldownTimer = 0;
+
+	bool cannotTakeDmg = false;
+
+    private void Update()
+    {
+		cooldownTimer -= Time.deltaTime;
+		if (cooldownTimer <= 0) cannotTakeDmg = false;
+    }
 
 	[NonSerialized] public bool flipX;
 

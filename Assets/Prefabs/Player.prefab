@@ -632,7 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: 1
   longRangeAttack: 1
-  fly: 1
+  fly: 0
   dash: 1
   lifeRegeneration: 1
   demon: 1

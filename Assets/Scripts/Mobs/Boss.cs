@@ -14,12 +14,9 @@ public abstract class Boss : MonoBehaviour
     protected Rigidbody2D bossRb;
     protected Vector2 direction = Vector2.left;
 
-    protected ParticleSystem bossParticles;
-
     void Awake() 
     { 
         bossRb = GetComponent<Rigidbody2D>();
-        bossParticles = GetComponent<ParticleSystem>();
     }
 
     protected void LookAtPlayer()
