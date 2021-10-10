@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934696015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.131, y: 0, z: 0}
+  m_LocalPosition: {x: 0.46, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6763141948203021526}
@@ -46,7 +46,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.07
+  m_Radius: 0.13
 --- !u!1 &6763141948203021525
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 6763141948203021527}
   - component: {fileID: 6763141948203021521}
   - component: {fileID: 7803596868180680511}
+  - component: {fileID: 77249330783354113}
   m_Layer: 3
   m_Name: MobMelee
   m_TagString: Mob
@@ -76,7 +77,7 @@ Transform:
   m_GameObject: {fileID: 6763141948203021525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.95, y: -7.38, z: 0}
-  m_LocalScale: {x: 3.4652, y: 3.2598, z: 1}
+  m_LocalScale: {x: 2.3, y: 2.3, z: 1}
   m_Children:
   - {fileID: 934696016}
   - {fileID: 9190164159478062980}
@@ -123,9 +124,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -8869438289944376743, guid: ac554db14d90e6643b9564497d5c7e8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.16, y: 0.16}
@@ -170,16 +171,16 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.57, y: 0.57}
   m_EdgeRadius: 0
 --- !u!114 &7803596868180680511
 MonoBehaviour:
@@ -194,11 +195,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  HeartPrefab: {fileID: 0}
-  HealthBar: {fileID: 0}
-  _numberOfBlink: 0
-  _blinkDuration: 0
+  HeartPrefab: {fileID: 2325108775077619128, guid: ee5c985ab85bb404593335959abd0cea, type: 3}
+  HeartList: []
+  HealthBar: {fileID: 9190164161207373989}
+  _numberOfBlink: 3
+  _blinkDuration: 0.4
   direction: {x: 0, y: 0}
+--- !u!95 &77249330783354113
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763141948203021525}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b35dab451581cf41983e6c955cd8407, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4257239364730252367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,5 +384,10 @@ PrefabInstance:
 --- !u!224 &9190164159478062980 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4944606293592191947, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
+  m_PrefabInstance: {fileID: 4257239364730252367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9190164161207373989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4944606291831356650, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
   m_PrefabInstance: {fileID: 4257239364730252367}
   m_PrefabAsset: {fileID: 0}

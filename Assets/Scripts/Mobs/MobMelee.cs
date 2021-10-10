@@ -66,7 +66,7 @@ public class MobMelee : Mob
         if (hp <= 0 && _isAlive)
         {
             _onDeath?.Invoke();
-            Blink(_numberOfBlink, _blinkDuration);
+            Blink(_numberOfBlink, _blinkDuration, _renderer);
             _isAlive = false;
         }
     }

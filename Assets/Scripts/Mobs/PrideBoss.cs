@@ -42,7 +42,7 @@ public class PrideBoss : Boss
         
         switch (attackIndex)
         {
-            // Lancement des épées à tête chercheuses
+            // Lancement des Ã©pÃ©es Ã  tÃªte chercheuses
             case 1: {
                     if(!launched)
                     {
