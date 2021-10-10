@@ -1,16 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Mob : MonoBehaviour
 {
     // Stats du mob.
-    protected int hp;
+    [SerializeField] protected int hp;
     protected int dmg;
     protected float speed;
     // Stats changeantes.
     protected bool attacking;
     protected float reach;
+    
+    #region Variables for death
+    protected bool _isAlive = true;
+    protected UnityEvent _onDeath;
+    protected Collider2D _collider;
+    protected SpriteRenderer _renderer;
+    [SerializeField] protected int _numberOfBlink;
+    [SerializeField] protected float _blinkDuration;
+
+    #endregion
 
     // Attributs de mouvements.
     public Vector2 direction;
@@ -18,7 +30,7 @@ public abstract class Mob : MonoBehaviour
     // Timer WIP.
     protected float tmpTimer = 0f;
 
-    // Initialisation des mouvements aléatoirement.
+    // Initialisation des mouvements alÃ©atoirement.
     void Awake()
     {
         mobRb = GetComponent<Rigidbody2D>();
@@ -26,7 +38,7 @@ public abstract class Mob : MonoBehaviour
         ChangeDirection();
     }
 
-    // Méthode appelée pour changer de direction en cas d'obstacle ou de fin de plateforme.
+    // MÃ©thode appelÃ©e pour changer de direction en cas d'obstacle ou de fin de plateforme.
     public void ChangeDirection()
     {
         direction.x *= -1;
@@ -35,11 +47,39 @@ public abstract class Mob : MonoBehaviour
         else transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
-    // Méthode appelée pour détecter un joueur en face du mob.
+    // MÃ©thode appelÃ©e pour dÃ©tecter un joueur en face du mob.
     protected bool DetectPlayer()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast((Vector2)transform.position, direction, reach, LayerMask.NameToLayer("MobLayer"));
         if (hitInfo.collider == null) return false;
         else return hitInfo.collider.transform.CompareTag("Player");
+    }
+
+    protected void Hit(int damage)
+    {
+        hp -= damage;
+    }
+    
+    /// <summary>
+    /// Death animation using DOTWeen
+    /// </summary>
+    protected void Blink(int blinkNumber, float blinkDuration)
+    {
+        if (blinkNumber > 0)
+        {
+            _renderer.DOFade(0, blinkDuration / 2).OnComplete(() =>
+            {
+                _renderer.DOFade(1, blinkDuration / 2).OnComplete(() =>
+                {
+                    blinkNumber -= 1;
+                    Blink(blinkNumber, blinkDuration);
+                });
+            });
+        }
+    }
+
+    protected void DeathAnimation()
+    {
+        GetComponent<Animator>().Play("Death");
     }
 }

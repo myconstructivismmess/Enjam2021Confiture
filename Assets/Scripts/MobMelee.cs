@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MobMelee : Mob
 {
-    /** Collider qui détecte si l'attaque du mob a touché. */
+    /** Collider qui dÃ©tecte si l'attaque du mob a touchÃ©. */
     Collider2D clawCollider;
-    /** Timer depuis le début de l'attaque. */
+    /** Timer depuis le dÃ©but de l'attaque. */
     float attackTimer = 0;
 
-    // Initialisation des valeurs propres au mob de mêlée.
+    // Initialisation des valeurs propres au mob de mÃªlÃ©e.
     void Start()
     {
         hp = 3;
@@ -26,7 +26,7 @@ public class MobMelee : Mob
 
         tmpTimer += Time.deltaTime;
 
-        //Si le joueur est à bonne distance.
+        //Si le joueur est Ã  bonne distance.
         if (DetectPlayer())
         {
             // Lancement de l'attaque.
@@ -49,7 +49,7 @@ public class MobMelee : Mob
                 tmpTimer = 0;
                 attacking = false;
                 if (!DetectPlayer()) mobRb.AddForce(direction * speed);
-                // Si le joueur est toujours à portée on relance l'attaque.
+                // Si le joueur est toujours Ã  portÃ©e on relance l'attaque.
                 else attacking = true;
             }
         }

@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MobReach : Mob
 {
-    /** Référence aus préfab du projectile. */
+    /** Rï¿½fï¿½rence aus prï¿½fab du projectile. */
     public GameObject projectile;
-    /** Position d'où partent les projectiles. */
+    /** Position d'oï¿½ partent les projectiles. */
     private Transform firePoint;
-
-    // Initialisation des valeurs propres au mob à distance.
+    // Initialisation des valeurs propres au mob ï¿½ distance.
     void Start()
     {
         hp = 2;
@@ -18,13 +19,16 @@ public class MobReach : Mob
         reach = 8f;
         mobRb.AddForce(direction * speed);
         firePoint = transform.GetChild(0);
+        _collider = GetComponent<Collider2D>();
+        _renderer = GetComponent<SpriteRenderer>();
+        _onDeath = new UnityEvent();
     }
 
     private void Update()
     {
         tmpTimer += Time.deltaTime;
 
-        //Si le joueur est à bonne distance.
+        //Si le joueur est ï¿½ bonne distance.
         if (DetectPlayer())
         {
             // Lancement de l'attaque.
@@ -46,8 +50,16 @@ public class MobReach : Mob
             tmpTimer = 0;
             attacking = false;
             if (!DetectPlayer()) mobRb.AddForce(direction * speed);
-            // Si le joueur est toujours à portée on relance l'attaque.
+            // Si le joueur est toujours ï¿½ portï¿½e on relance l'attaque.
             else attacking = true;
+        }
+
+        // Check health an invoke death event
+        if (hp <= 0 && _isAlive)
+        {
+            _onDeath?.Invoke();
+            Blink(_numberOfBlink, _blinkDuration);
+            _isAlive = false;
         }
     }
 }
