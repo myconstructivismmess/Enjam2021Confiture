@@ -15,6 +15,7 @@ public class PlayerInputController : MonoBehaviour
 	private SpriteRenderer _demonMaskSpriteRenderer;
 	private SpriteRenderer _demonCapeSpriteRenderer;
 	private SpriteRenderer _flyFlamesSpriteRenderer;
+	private SpriteRenderer _flyFlamesSpriteRenderer2;
 	
 	private InputActionMap _defaultActionMap, _flyingActionMap;
 
@@ -40,6 +41,7 @@ public class PlayerInputController : MonoBehaviour
 		_demonMaskSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[1];
 		_demonCapeSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[2];
 		_flyFlamesSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[3];
+		_flyFlamesSpriteRenderer2 = _transform.GetComponentsInChildren<SpriteRenderer>()[4];
 		
 		_defaultActionMap = _playerInput.actions.FindActionMap("Default");
 		_flyingActionMap = _playerInput.actions.FindActionMap("Flying");
@@ -104,6 +106,7 @@ public class PlayerInputController : MonoBehaviour
 	private void UpdateFlyFlamesVisibility()
 	{
 		_flyFlamesSpriteRenderer.enabled = _canFly;
+		_flyFlamesSpriteRenderer2.enabled = _canFly;
 	}
 
 	public void Move(InputAction.CallbackContext callbackContext)
@@ -114,10 +117,13 @@ public class PlayerInputController : MonoBehaviour
 		{
 			_movement = movement.normalized;
 			_animator.SetBool(_isMovingAnimatorHash, true);
+			
+			_player.flipX = movement.x < 0;
 			_spriteRenderer.flipX = movement.x < 0;
-			_demonMaskSpriteRenderer.flipX = movement.x < 0;
-			_demonCapeSpriteRenderer.flipX = movement.x < 0;
-			_flyFlamesSpriteRenderer.flipX = movement.x < 0;
+			_demonMaskSpriteRenderer.flipX = _player.flipX;
+			_demonCapeSpriteRenderer.flipX = _player.flipX;
+			_flyFlamesSpriteRenderer.flipX = _player.flipX;
+			_flyFlamesSpriteRenderer2.flipX = _player.flipX;
 		}
 		else
 		{
@@ -134,10 +140,13 @@ public class PlayerInputController : MonoBehaviour
 		{
 			_movement = movement;
 			_animator.SetBool(_isMovingAnimatorHash, true);
-			_spriteRenderer.flipX = _movement.x < 0;
-			_demonMaskSpriteRenderer.flipX = movement.x < 0;
-			_demonCapeSpriteRenderer.flipX = movement.x < 0;
-			_flyFlamesSpriteRenderer.flipX = movement.x < 0;
+			
+			_player.flipX = movement.x < 0;
+			_spriteRenderer.flipX = movement.x < 0;
+			_demonMaskSpriteRenderer.flipX = _player.flipX;
+			_demonCapeSpriteRenderer.flipX = _player.flipX;
+			_flyFlamesSpriteRenderer.flipX = _player.flipX;
+			_flyFlamesSpriteRenderer2.flipX = _player.flipX;
 		}
 		else
 		{

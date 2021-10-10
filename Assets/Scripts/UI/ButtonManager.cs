@@ -13,7 +13,8 @@ namespace UI
     public class ButtonManager : SerializedMonoBehaviour
     {
         private TMP_Text _text;
-
+        [SerializeField] private AudioSource _tikMenu;
+        [SerializeField] private AudioClip _clip;
         private void Start()
         {
             _text = this.GetComponent<TMP_Text>();
@@ -25,6 +26,7 @@ namespace UI
         public void OnPointerEnter()
         {
             _text.rectTransform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.5f);
+            _tikMenu.PlayOneShot(_clip);
         }
 
         /// <summary>
@@ -33,6 +35,7 @@ namespace UI
         public void OnPointerExit()
         {
             _text.rectTransform.DOScale(new Vector3(1, 1, 1), 0.5f);
+            _tikMenu.PlayOneShot(_clip);
         }
     }
 }

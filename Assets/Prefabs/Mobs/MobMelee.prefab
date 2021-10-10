@@ -194,10 +194,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  HeartPrefab: {fileID: 0}
-  HealthBar: {fileID: 0}
-  _numberOfBlink: 0
-  _blinkDuration: 0
+  HeartPrefab: {fileID: 2325108775077619128, guid: ee5c985ab85bb404593335959abd0cea, type: 3}
+  HealthBar: {fileID: 9190164161207373989}
+  _numberOfBlink: 3
+  _blinkDuration: 0.4
   direction: {x: 0, y: 0}
 --- !u!1001 &4257239364730252367
 PrefabInstance:
@@ -363,5 +363,10 @@ PrefabInstance:
 --- !u!224 &9190164159478062980 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4944606293592191947, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
+  m_PrefabInstance: {fileID: 4257239364730252367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9190164161207373989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4944606291831356650, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
   m_PrefabInstance: {fileID: 4257239364730252367}
   m_PrefabAsset: {fileID: 0}
