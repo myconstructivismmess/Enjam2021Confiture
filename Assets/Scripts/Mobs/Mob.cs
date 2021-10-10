@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -19,7 +20,7 @@ public abstract class Mob : MonoBehaviour
     protected bool attacking;
     protected float reach;
     [SerializeField] protected GameObject HeartPrefab;
-    protected List<Transform> HeartList;
+    [SerializeField] protected List<Transform> HeartList;
     [SerializeField] protected GameObject HealthBar;
     protected bool _isFirstHit = true;
 
@@ -38,6 +39,7 @@ public abstract class Mob : MonoBehaviour
     protected Rigidbody2D mobRb;
     // Timer WIP.
     protected float tmpTimer = 0f;
+    private int _counterDegeux;
 
     
     // Initialisation des mouvements aléatoirement.
@@ -74,19 +76,35 @@ public abstract class Mob : MonoBehaviour
             HealthBar.gameObject.SetActive(true);
             _isFirstHit = false;
         }
+
+        if (damage > hp)
+        {
+            _counterDegeux = hp;
+            DeleteAllHearts();
+        }
+        
+        if (HeartList.Count > 0 && damage < hp)
+        {
+            HeartList[0].gameObject.SetActive(false);
+            HeartList.RemoveAt(0);
+        }
         
         hp -= damage;
-        if (HeartList.Count > 0)
+    }
+
+    private void DeleteAllHearts()
+    {
+        foreach (var heart in HeartList)
         {
-            HeartList.Remove(HeartList.First());
-            HeartList[0]?.gameObject.SetActive(false);
+            HeartList[0].gameObject.SetActive(false);
+            HeartList.RemoveAt(0);
         }
     }
     
     /// <summary>
     /// Death animation using DOTWeen
     /// </summary>
-    protected void Blink(int blinkNumber, float blinkDuration)
+    protected void Blink(int blinkNumber, float blinkDuration, SpriteRenderer renderer)
     { 
         if (blinkNumber > 0)
         {
@@ -100,7 +118,7 @@ public abstract class Mob : MonoBehaviour
                 
                 _renderer.DOFade(1, blinkDuration / 2).OnComplete(() =>
                 {
-                    Blink(blinkNumber, blinkDuration);
+                    Blink(blinkNumber, blinkDuration,renderer);
                 });
             });
         }
