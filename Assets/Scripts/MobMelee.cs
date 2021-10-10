@@ -4,41 +4,59 @@ using UnityEngine;
 
 public class MobMelee : Mob
 {
-    private void Awake() { InitMovement(); }
+    /** Collider qui détecte si l'attaque du mob a touché. */
+    Collider2D clawCollider;
+    /** Timer depuis le début de l'attaque. */
+    float attackTimer = 0;
 
-    // Start is called before the first frame update
+    // Initialisation des valeurs propres au mob de mêlée.
     void Start()
     {
         hp = 3;
         dmg = 2;
         speed = 50f;
+        reach = 0.4f;
         mobRb.AddForce(direction * speed);
+        clawCollider = transform.GetChild(0).GetComponent<Collider2D>();
+        clawCollider.enabled = false;
     }
 
     void Update()
     {
-        tmpTimer += Time.deltaTime;
-        //Debug.Log(attacking +" " + tmpTimer);
 
-        RaycastHit2D hitInfo = Physics2D.Raycast((Vector2)transform.position, direction, 0.2f, LayerMask.NameToLayer("MobLayer"));
-        if (hitInfo.collider != null)
+        tmpTimer += Time.deltaTime;
+
+        //Si le joueur est à bonne distance.
+        if (DetectPlayer())
         {
-            if (hitInfo.collider.transform.tag == "Player" && !attacking)
+            // Lancement de l'attaque.
+            if (!attacking)
             {
                 attacking = true;
                 mobRb.AddForce(-direction * speed);
-
-                Debug.Log("Claw attack !");
-
-                
             }
         }
 
-        if (tmpTimer >= 2f && attacking)
+        if (attacking)
         {
-            tmpTimer = 0;
-            attacking = false;
-            mobRb.AddForce(direction * speed);
+            // On laisse 0.5 secondes au joueur pour esquiver, puis on active le collider d'attaque.
+            if (tmpTimer >= 0.5f) clawCollider.enabled = true;
+            if (tmpTimer >= 1f) clawCollider.enabled = false;
+
+            // Fin de l'attaque
+            if (tmpTimer >= 2f)
+            {
+                tmpTimer = 0;
+                attacking = false;
+                if (!DetectPlayer()) mobRb.AddForce(direction * speed);
+                // Si le joueur est toujours à portée on relance l'attaque.
+                else attacking = true;
+            }
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.transform.CompareTag("Player")) collider.transform.GetComponent<DummyPlayer>().Hit(dmg);
     }
 }
