@@ -64,14 +64,17 @@ public abstract class Mob : MonoBehaviour
     /// Death animation using DOTWeen
     /// </summary>
     protected void Blink(int blinkNumber, float blinkDuration)
-    {
+    { 
         if (blinkNumber > 0)
         {
+            blinkNumber -= 1;
             _renderer.DOFade(0, blinkDuration / 2).OnComplete(() =>
             {
+                if(blinkNumber <=0 && !_isAlive)
+                    return;
+                
                 _renderer.DOFade(1, blinkDuration / 2).OnComplete(() =>
                 {
-                    blinkNumber -= 1;
                     Blink(blinkNumber, blinkDuration);
                 });
             });

@@ -37,11 +37,6 @@ public class MobReach : Mob
                 attacking = true;
                 mobRb.AddForce(-direction * speed);
             }
-
-            // Lancement du projectile.
-            Debug.Log("Pew Pew attack !");
-            GameObject tmpPew = Instantiate(projectile, firePoint.position, firePoint.rotation);
-            tmpPew.GetComponent<Rigidbody2D>().AddForce(direction * 125f);
         }
 
         // Fin de l'attaque
@@ -52,6 +47,11 @@ public class MobReach : Mob
             if (!DetectPlayer()) mobRb.AddForce(direction * speed);
             // Si le joueur est toujours � port�e on relance l'attaque.
             else attacking = true;
+            // Lancement du projectile.
+            
+            Debug.Log("Pew Pew attack !");
+            GameObject tmpPew = Instantiate(projectile, firePoint.position, firePoint.rotation);
+            tmpPew.GetComponent<Rigidbody2D>().AddForce(direction * 125f);
         }
 
         // Check health an invoke death event
