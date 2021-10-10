@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +16,11 @@ public abstract class Mob : MonoBehaviour
     // Stats changeantes.
     protected bool attacking;
     protected float reach;
-    
+    [SerializeField] protected GameObject HeartPrefab;
+    protected List<Transform> HeartList;
+    [SerializeField] protected GameObject HealthBar;
+    protected bool _isFirstHit = true;
+
     #region Variables for death
     protected bool _isAlive = true;
     protected UnityEvent _onDeath;
@@ -30,6 +37,7 @@ public abstract class Mob : MonoBehaviour
     // Timer WIP.
     protected float tmpTimer = 0f;
 
+    
     // Initialisation des mouvements aléatoirement.
     void Awake()
     {
@@ -55,9 +63,22 @@ public abstract class Mob : MonoBehaviour
         else return hitInfo.collider.transform.CompareTag("Player");
     }
 
-    protected void Hit(int damage)
+    
+    [Button]
+    public void Hit(int damage)
     {
+        if (_isFirstHit)
+        {
+            HealthBar.gameObject.SetActive(true);
+            _isFirstHit = false;
+        }
+        
         hp -= damage;
+        if (HeartList.Count > 0)
+        {
+            HeartList.Remove(HeartList.First());
+            HeartList[0].gameObject.SetActive(false);
+        }
     }
     
     /// <summary>
@@ -70,8 +91,10 @@ public abstract class Mob : MonoBehaviour
             blinkNumber -= 1;
             _renderer.DOFade(0, blinkDuration / 2).OnComplete(() =>
             {
-                if(blinkNumber <=0 && !_isAlive)
-                    return;
+                if (blinkNumber <= 0 && !_isAlive)
+                {
+                    Destroy(gameObject);
+                }
                 
                 _renderer.DOFade(1, blinkDuration / 2).OnComplete(() =>
                 {

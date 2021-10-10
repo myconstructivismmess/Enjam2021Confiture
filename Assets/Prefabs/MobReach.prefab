@@ -146,6 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02526c2da19638409e30aa693f6d790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 2
+  HeartPrefab: {fileID: 2325108775077619128, guid: ee5c985ab85bb404593335959abd0cea, type: 3}
+  HealthBar: {fileID: 2384974445710381332}
+  _numberOfBlink: 3
+  _blinkDuration: 0.4
   direction: {x: 0, y: 0}
   projectile: {fileID: 4998210708912416700, guid: d51f3f38312c29a44adef4b37fb4e960, type: 3}
 --- !u!1 &2731672515730054119
@@ -185,6 +190,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2731672515365076776}
     m_Modifications:
+    - target: {fileID: 4944606291831356650, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4944606293592191947, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -278,5 +287,10 @@ PrefabInstance:
 --- !u!224 &2384974445317873205 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4944606293592191947, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
+  m_PrefabInstance: {fileID: 7316067524527222270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2384974445710381332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4944606291831356650, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
   m_PrefabInstance: {fileID: 7316067524527222270}
   m_PrefabAsset: {fileID: 0}

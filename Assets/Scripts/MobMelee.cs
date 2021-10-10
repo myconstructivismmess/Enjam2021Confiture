@@ -23,6 +23,13 @@ public class MobMelee : Mob
         _collider = GetComponent<Collider2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _onDeath = new UnityEvent();
+        
+        HeartList = new List<Transform>();
+        for (int i = 0; i < hp; i++)
+        {
+            HeartList.Add(Instantiate(HeartPrefab, HealthBar.transform).transform);
+
+        }
     }
 
     void Update()
