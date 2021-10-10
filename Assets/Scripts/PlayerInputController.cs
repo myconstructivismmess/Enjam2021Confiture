@@ -14,6 +14,7 @@ public class PlayerInputController : MonoBehaviour
 	private SpriteRenderer _spriteRenderer;
 	private SpriteRenderer _demonMaskSpriteRenderer;
 	private SpriteRenderer _demonCapeSpriteRenderer;
+	private SpriteRenderer _flyFlamesSpriteRenderer;
 	
 	private InputActionMap _defaultActionMap, _flyingActionMap;
 
@@ -38,6 +39,7 @@ public class PlayerInputController : MonoBehaviour
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 		_demonMaskSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[1];
 		_demonCapeSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[2];
+		_flyFlamesSpriteRenderer = _transform.GetComponentsInChildren<SpriteRenderer>()[3];
 		
 		_defaultActionMap = _playerInput.actions.FindActionMap("Default");
 		_flyingActionMap = _playerInput.actions.FindActionMap("Flying");
@@ -50,6 +52,7 @@ public class PlayerInputController : MonoBehaviour
 		if (_player.fly != _canFly)
 		{
 			_canFly = _player.fly;
+			UpdateFlyFlamesVisibility();
 			UpdateActionMap();
 		}
 
@@ -98,6 +101,11 @@ public class PlayerInputController : MonoBehaviour
 		_demonCapeSpriteRenderer.enabled = _cape;
 	}
 
+	private void UpdateFlyFlamesVisibility()
+	{
+		_flyFlamesSpriteRenderer.enabled = _canFly;
+	}
+
 	public void Move(InputAction.CallbackContext callbackContext)
 	{
 		Vector2 movement = callbackContext.ReadValue<Vector2>();
@@ -109,6 +117,7 @@ public class PlayerInputController : MonoBehaviour
 			_spriteRenderer.flipX = movement.x < 0;
 			_demonMaskSpriteRenderer.flipX = movement.x < 0;
 			_demonCapeSpriteRenderer.flipX = movement.x < 0;
+			_flyFlamesSpriteRenderer.flipX = movement.x < 0;
 		}
 		else
 		{
@@ -128,6 +137,7 @@ public class PlayerInputController : MonoBehaviour
 			_spriteRenderer.flipX = _movement.x < 0;
 			_demonMaskSpriteRenderer.flipX = movement.x < 0;
 			_demonCapeSpriteRenderer.flipX = movement.x < 0;
+			_flyFlamesSpriteRenderer.flipX = movement.x < 0;
 		}
 		else
 		{

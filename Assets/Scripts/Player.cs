@@ -17,8 +17,18 @@ public class Player : MonoBehaviour
 	public float jumpSpeed = 1200;
 
 	public int health = 10;
+	float cooldownDmg = 3;
+	float cooldownTimer = 0;
 
-	public void Attack()
+	bool cannotTakeDmg = false;
+
+    private void Update()
+    {
+		cooldownTimer -= Time.deltaTime;
+		if (cooldownTimer <= 0) cannotTakeDmg = false;
+    }
+
+    public void Attack()
 	{
 		if (!attack) return;
 		
@@ -32,9 +42,15 @@ public class Player : MonoBehaviour
 		Debug.Log("Long Range Attack");
 	}
 
-	public void Hit(int dmg)
+	public void Hit(int dmg, bool shouldStartCooldown = false)
     {
-		health -= dmg;
+		if(!cannotTakeDmg) health -= dmg;
+		if (shouldStartCooldown)
+		{
+			cannotTakeDmg = true;
+			cooldownTimer = cooldownDmg;
+		}
+
 		Debug.Log($"Ouch j'ai plus que {health}");
     }
 }

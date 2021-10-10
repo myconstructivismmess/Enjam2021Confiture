@@ -1109,7 +1109,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1162,7 +1162,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1525,11 +1525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1675303127988658580, guid: 766d46c569cc2a94c96cdcb2c2592819, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.3
+      value: -7.94
       objectReference: {fileID: 0}
     - target: {fileID: 1675303127988658580, guid: 766d46c569cc2a94c96cdcb2c2592819, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.91
+      value: -2.82
       objectReference: {fileID: 0}
     - target: {fileID: 1675303127988658580, guid: 766d46c569cc2a94c96cdcb2c2592819, type: 3}
       propertyPath: m_LocalPosition.z
