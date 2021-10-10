@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public abstract class Mob : MonoBehaviour
 {
@@ -107,5 +109,10 @@ public abstract class Mob : MonoBehaviour
     protected void DeathAnimation()
     {
         GetComponent<Animator>().Play("Death");
+    }
+
+    private void OnDestroy()
+    {
+        ClearCheck.Instance.CheckEnd();
     }
 }
