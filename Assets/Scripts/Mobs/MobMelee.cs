@@ -73,6 +73,6 @@ public class MobMelee : Mob
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.transform.CompareTag("Player")) collider.transform.GetComponent<DummyPlayer>().Hit(dmg);
+        if (collider.transform.CompareTag("Player")) collider.transform.GetComponent<Player>().Hit(dmg);
     }
 }
