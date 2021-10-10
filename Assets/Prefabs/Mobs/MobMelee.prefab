@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 6763141948203021520}
   - component: {fileID: 6763141948203021527}
   - component: {fileID: 6763141948203021521}
-  - component: {fileID: 6763141948203021522}
+  - component: {fileID: 7803596868180680511}
   m_Layer: 3
   m_Name: MobMelee
   m_TagString: Mob
@@ -181,7 +181,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &6763141948203021522
+--- !u!114 &7803596868180680511
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,14 +190,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6763141948203021525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ec407e4027bf348bcefbfacee9d02f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2725c6b5d71135a418190ffa8180dce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
-  HeartPrefab: {fileID: 2325108775077619128, guid: ee5c985ab85bb404593335959abd0cea, type: 3}
-  HealthBar: {fileID: 9190164161207373989}
-  _numberOfBlink: 3
-  _blinkDuration: 0.4
+  hp: 0
+  HeartPrefab: {fileID: 0}
+  HealthBar: {fileID: 0}
+  _numberOfBlink: 0
+  _blinkDuration: 0
   direction: {x: 0, y: 0}
 --- !u!1001 &4257239364730252367
 PrefabInstance:
@@ -363,10 +363,5 @@ PrefabInstance:
 --- !u!224 &9190164159478062980 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4944606293592191947, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
-  m_PrefabInstance: {fileID: 4257239364730252367}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9190164161207373989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4944606291831356650, guid: 69e1884e49ffd2b468519c0f9e74e119, type: 3}
   m_PrefabInstance: {fileID: 4257239364730252367}
   m_PrefabAsset: {fileID: 0}

@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 	public float speed = 700;
 	public float jumpSpeed = 1200;
 
+	public int health = 10;
+
 	public void Attack()
 	{
 		if (!attack) return;
@@ -29,4 +31,10 @@ public class Player : MonoBehaviour
 		
 		Debug.Log("Long Range Attack");
 	}
+
+	public void Hit(int dmg)
+    {
+		health -= dmg;
+		Debug.Log($"Ouch j'ai plus que {health}");
+    }
 }
