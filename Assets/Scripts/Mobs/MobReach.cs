@@ -65,6 +65,7 @@ public class MobReach : Mob
         {
             _onDeath?.Invoke();
             Blink(_numberOfBlink, _blinkDuration, _renderer);
+            ClearCheck.Instance.mobList.Remove(transform);
             _isAlive = false;
         }
     }

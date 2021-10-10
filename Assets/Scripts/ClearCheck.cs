@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ClearCheck : MonoBehaviour
 {
-    [SerializeField] private List<Transform> mobList;
+    [SerializeField] public List<Transform> mobList;
     [SerializeField] private string _sceneName;
     [SerializeField] private FadeOutScenes _fadeOutScenes;
     public static ClearCheck Instance;
@@ -26,7 +26,6 @@ public class ClearCheck : MonoBehaviour
             {
                 SceneManager.LoadScene(_sceneName);
             });
-            
             _fadeOutScenes.FadeOut(e);
         }
     }

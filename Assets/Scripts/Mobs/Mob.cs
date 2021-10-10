@@ -96,8 +96,7 @@ public abstract class Mob : MonoBehaviour
     {
         foreach (var heart in HeartList)
         {
-            HeartList[0].gameObject.SetActive(false);
-            HeartList.RemoveAt(0);
+            heart.gameObject.SetActive(false);
         }
     }
     
