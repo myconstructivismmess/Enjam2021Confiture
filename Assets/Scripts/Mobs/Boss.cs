@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Boss : MonoBehaviour
 {
-    protected int hp = 10;
+    protected int hp = 30;
     protected float speed = 2f;
 
     protected float patternTimer = 0f;
@@ -14,13 +14,9 @@ public abstract class Boss : MonoBehaviour
     protected Rigidbody2D bossRb;
     protected Vector2 direction = Vector2.left;
 
-    protected ParticleSystem bossParticles;
+    void Awake()  {  bossRb = GetComponent<Rigidbody2D>(); }
 
-    void Awake() 
-    { 
-        bossRb = GetComponent<Rigidbody2D>();
-        bossParticles = GetComponent<ParticleSystem>();
-    }
+    public void Hit(int dmg) { hp -= dmg; Debug.Log("AAAAH"); }
 
     protected void LookAtPlayer()
     {

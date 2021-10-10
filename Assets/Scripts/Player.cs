@@ -21,6 +21,16 @@ public class Player : MonoBehaviour
 	public LayerMask attackLayerMask;
 
 	public int health = 10;
+	float cooldownDmg = 3;
+	float cooldownTimer = 0;
+
+	bool cannotTakeDmg = false;
+
+    private void Update()
+    {
+		cooldownTimer -= Time.deltaTime;
+		if (cooldownTimer <= 0) cannotTakeDmg = false;
+    }
 
 	[NonSerialized] public bool flipX;
 
@@ -41,10 +51,8 @@ public class Player : MonoBehaviour
 
 		foreach (RaycastHit2D raycastHit2D in raycastHit2Ds)
 		{
-			if (raycastHit2D.transform.CompareTag("Mob"))
-			{
-				raycastHit2D.transform.GetComponent<Mob>().Hit(attackDammage);
-			}
+			if (raycastHit2D.transform.CompareTag("Mob")) raycastHit2D.transform.GetComponent<Mob>().Hit(attackDammage);
+			if (raycastHit2D.transform.CompareTag("Boss")) raycastHit2D.transform.GetComponent<Boss>().Hit(attackDammage);
 		}
 	}
 	
@@ -55,9 +63,15 @@ public class Player : MonoBehaviour
 		Debug.Log("Long Range Attack");
 	}
 
-	public void Hit(int dmg)
+	public void Hit(int dmg, bool shouldStartCooldown = false)
     {
-		health -= dmg;
+		if (shouldStartCooldown)
+		{
+			cooldownTimer = cooldownDmg;
+			cannotTakeDmg = true;
+		}
+		if(!cannotTakeDmg) health -= dmg;
+		
 		Debug.Log($"Ouch j'ai plus que {health}");
     }
 

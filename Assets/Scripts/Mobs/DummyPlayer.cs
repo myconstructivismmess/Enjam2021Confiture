@@ -11,4 +11,10 @@ public class DummyPlayer : MonoBehaviour
         health -= dmg;
         Debug.Log($"Ouch ! J'ai plus que {health} pv");
     }
+
+    private void OnParticleTrigger()
+    {
+        health -= 1;
+        Debug.Log($"Ouch ça brûle ! J'ai plus que {health} pv");
+    }
 }
