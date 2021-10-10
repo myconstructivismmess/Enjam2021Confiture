@@ -114,10 +114,12 @@ public class PlayerInputController : MonoBehaviour
 		{
 			_movement = movement.normalized;
 			_animator.SetBool(_isMovingAnimatorHash, true);
+			
+			_player.flipX = movement.x < 0;
 			_spriteRenderer.flipX = movement.x < 0;
-			_demonMaskSpriteRenderer.flipX = movement.x < 0;
-			_demonCapeSpriteRenderer.flipX = movement.x < 0;
-			_flyFlamesSpriteRenderer.flipX = movement.x < 0;
+			_demonMaskSpriteRenderer.flipX = _player.flipX;
+			_demonCapeSpriteRenderer.flipX = _player.flipX;
+			_flyFlamesSpriteRenderer.flipX = _player.flipX;
 		}
 		else
 		{
@@ -134,10 +136,12 @@ public class PlayerInputController : MonoBehaviour
 		{
 			_movement = movement;
 			_animator.SetBool(_isMovingAnimatorHash, true);
-			_spriteRenderer.flipX = _movement.x < 0;
-			_demonMaskSpriteRenderer.flipX = movement.x < 0;
-			_demonCapeSpriteRenderer.flipX = movement.x < 0;
-			_flyFlamesSpriteRenderer.flipX = movement.x < 0;
+			
+			_player.flipX = movement.x < 0;
+			_spriteRenderer.flipX = movement.x < 0;
+			_demonMaskSpriteRenderer.flipX = _player.flipX;
+			_demonCapeSpriteRenderer.flipX = _player.flipX;
+			_flyFlamesSpriteRenderer.flipX = _player.flipX;
 		}
 		else
 		{

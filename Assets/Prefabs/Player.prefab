@@ -537,6 +537,10 @@ MonoBehaviour:
   flySpeed: 400
   speed: 700
   jumpSpeed: 450
+  attackDistance: 1.19
+  attackLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   health: 10
 --- !u!114 &1241581894466779399
 MonoBehaviour:
