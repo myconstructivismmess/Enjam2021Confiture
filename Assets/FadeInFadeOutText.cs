@@ -10,6 +10,7 @@ public class FadeInFadeOutText : MonoBehaviour
 {
     [SerializeField] private List<TMP_Text> _introTexts;
     private int _currentText = 0;
+    [SerializeField] private string _sceneName;
     
     void Start()
     {
@@ -40,7 +41,7 @@ public class FadeInFadeOutText : MonoBehaviour
            if (_currentText <= 2)
                Invoke(nameof(FadeIn), 1f);
            else
-               SceneManager.LoadScene("MainScene");
+               SceneManager.LoadScene(_sceneName);
        });
     }
 }
